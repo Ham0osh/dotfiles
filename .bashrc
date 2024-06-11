@@ -1,3 +1,4 @@
+# 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -84,32 +85,35 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# enable asdf for virtual envs
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
-
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+# Source my aliases
+if [ -f ./.bash_aliases ]; then
+    . ./.bash_aliases
 fi
 
-source ~/gitstatus/gitstatus.prompt.sh
-# PS1='\[\e[2m\]\@ \[\e[0m\]\u@\h \[\e[2m\]in \[\e[0m\]$(git branch 2>/dev/null | grep '"'"'*'"'"' | colrm 1 2)\n\[\e[3m\]\w \[\e[0m\]\$ '
-PS1='\r\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]$(git branch 2>/dev/null | grep '"'"'*'"'"' | colrm 1 2)\n\[\e[38;5;32m\]\w \[\e[38;5;32m\]\$ \[\e[0m\]'
+# Determine active Python virtualenv details.
+function set_virtualenv () {
+  if test -z "$VIRTUAL_ENV" ; then
+      PYTHON_VIRTUALENV=""
+  else
+	  PYTHON_VIRTUALENV="(`basename \"$VIRTUAL_ENV\"`) "
+  fi
+}
 
-PS1='\r\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}\n\[\e[38;5;32m\]\w \[\e[38;5;32m\]\$ \[\e[0m\]'
+# for showing git branch and if we are in a virtual env
+source ~/gitstatus/gitstatus.prompt.sh
+set_virtualenv
+
+PS1='\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}\n\[\e[38;5;26m\]${PYTHON_VIRTUALENV}\[\e[38;5;32m\]\w \$ \[\e[0m\]'
+
+# PS1='\r\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}\n${PYTHON_VIRTUALENV}\[\e[38;5;32m\]\w \[\e[38;5;32m\]\$ \[\e[0m\]'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -124,4 +128,3 @@ fi
 export GOPATH=$HOME/.local/share/go
 export PATH=$HOME/.local/share/go/bin:$PATH
 
-eval "$(thefuck --alias)"

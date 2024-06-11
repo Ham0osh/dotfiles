@@ -1,8 +1,18 @@
 alias ls='eza --header'
-alias ll="ls -lF --color=auto"
-alias la="ll -a"
+alias ll="ls -lF --color=auto --git"
+alias la="ll -a --icons"
+alias lt="ll --tree --level=1"
+alias ltt="ll --tree --level=2"
+alias lttt="ll --tree --level=3"
+alias ltttt="ll --tree --level=4"
+alias lttttt="ll --tree --level=5"
+alias lT="ll --tree"
 
-alias botscr="screen -d -r bot"
+alias ld="ll -D"
+alias lta="lt -a"
+
+alias oldcat="cat" cat="batcat"
+alias catdiff="cat --style=changes"
 
 alias ..="cd .."
 alias ....='cd ..\..'
