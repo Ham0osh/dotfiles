@@ -4,6 +4,7 @@
 
 sudo apt upgrade -y
 source ./.bashrc
+ln -sf ./nvim/ ~/.config/nvim
 
 # Add my source to bashrc
 echo "Ready to rumble..."
