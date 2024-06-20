@@ -1,4 +1,4 @@
-#!/bit/bash
+#!/bin/bash
 
 install () {
   # which $1 &> /dev/null

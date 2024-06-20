@@ -97,6 +97,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 if [ -f ./.bash_aliases ]; then
     . ./.bash_aliases
 fi
+# Source my software aliases
+if [ -f ./.bash_aliases_software ]; then
+    ./.bash_aliases_software
+fi
 
 # Determine active Python virtualenv details.
 function set_virtualenv () {
@@ -125,6 +129,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+
 export GOPATH=$HOME/.local/share/go
 export PATH=$HOME/.local/share/go/bin:$PATH
 
