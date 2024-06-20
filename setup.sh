@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo apt update
+sudo apt upgrade -y
 
 # Install core utils
 bash ./aptinstall.sh
@@ -16,9 +17,8 @@ while true; do
            break;;
     * ) echo 'Invalid response';;
   esac
-done
+done 
 
-sudo apt upgrade -y
 source ./.bashrc
 # ln -sf ./nvim/ ~/.config/nvim
 

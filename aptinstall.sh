@@ -41,4 +41,9 @@ install net-tools
 install nmap
 install htop
 install bat
-install eza
+
+# Install from repos
+echo "Installing: gitprompt..."
+bash ./soft_install/gitprompt_install.sh
+echo "Installing: eza..."
+bash ./soft_install/eza_install.sh

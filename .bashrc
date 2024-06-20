@@ -112,12 +112,10 @@ function set_virtualenv () {
 }
 
 # for showing git branch and if we are in a virtual env
-source ~/gitstatus/gitstatus.prompt.sh
+source ./software/gitstatus/gitstatus.prompt.sh
 set_virtualenv
 
 PS1='\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}\n\[\e[38;5;26m\]${PYTHON_VIRTUALENV}\[\e[38;5;32m\]\w \$ \[\e[0m\]'
-
-# PS1='\r\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}\n${PYTHON_VIRTUALENV}\[\e[38;5;32m\]\w \[\e[38;5;32m\]\$ \[\e[0m\]'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -130,7 +128,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
 export GOPATH=$HOME/.local/share/go
 export PATH=$HOME/.local/share/go/bin:$PATH
-
