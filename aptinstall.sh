@@ -1,7 +1,5 @@
 #!/bit/bash
 
-sudo apt update
-
 install () {
   # which $1 &> /dev/null
 
@@ -16,7 +14,18 @@ install () {
 # Install CLI tools I use
 install vim
 install neovim
+
+# Install git
 install git
+echo "Enter the Global Username for Git:";
+read GITUSER;
+git config --global user.name "${GITUSER}"
+echo "Enter the Global Email for Git:";
+read GITEMAIL;
+git config --global user.email "${GITEMAIL}"
+echo 'Git has been configured!'
+git config --list
+
 install tmux
 install neofetch
 install curl
@@ -26,5 +35,3 @@ install htop
 
 install bat
 install eza
-
-

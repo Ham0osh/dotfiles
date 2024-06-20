@@ -8,7 +8,6 @@ alias ltttt="ll --tree --level=4"
 alias lttttt="ll --tree --level=5"
 alias lT="ll --tree"
 
-
 alias ld="ll -M"
 alias lta="lt -a"
 
