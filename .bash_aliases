@@ -31,5 +31,3 @@ alias pscpu='ps aufx | sort -nr -k 3 | head -10'
 alias wtr='curl wttr.in/sfu?0?Q'
 alias tree='ls -lT'
 alias cl='clear'
-
-alias pipes='/usr/local/bin/pipes.sh -t 8'
