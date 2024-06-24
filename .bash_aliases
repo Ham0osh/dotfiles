@@ -13,6 +13,7 @@ alias lta="lt -a"
 alias oldcat="cat" cat="batcat"
 alias catdiff="cat --style=changes"
 
+
 alias ..="cd .."
 alias ....='cd ..\..'
 alias mount="mount |column -t"
