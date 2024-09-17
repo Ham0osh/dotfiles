@@ -1,6 +1,6 @@
 alias ls='eza --header'
-alias ll="ls -lF --color=auto --git"
-alias la="ll -a --icons"
+alias ll="eza -l -F -X --color=auto --git"
+alias la="eza -l -F -a --icons --color=auto --git"
 alias lt="ll --tree --level=1"
 alias ltt="ll --tree --level=2"
 alias lttt="ll --tree --level=3"

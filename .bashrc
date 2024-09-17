@@ -94,12 +94,12 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 # Source my aliases
-if [ -f ./.bash_aliases ]; then
-    source .bash_aliases
+if [ -f /home/p-one/workplace-hamish/dotfiles/.bash_aliases ]; then
+    source /home/p-one/workplace-hamish/dotfiles/.bash_aliases
 fi
 # Source my software aliases
-if [ -f ./.bash_aliases_software ]; then
-    source ./.bash_aliases_software
+if [ -f /home/p-one/workplace-hamish/dotfiles/.bash_aliases_software ]; then
+    source /home/p-one/workplace-hamish/dotfiles/.bash_aliases_software
 fi
 
 # Determine active Python virtualenv details.
@@ -112,7 +112,7 @@ function set_virtualenv () {
 }
 
 # for showing git branch and if we are in a virtual env
-source ./software/gitstatus/gitstatus.prompt.sh
+source /home/p-one/workplace-hamish/dotfiles/software/gitstatus/gitstatus.prompt.sh
 set_virtualenv
 
 PS1='\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}\n\[\e[38;5;26m\]${PYTHON_VIRTUALENV}\[\e[38;5;32m\]\w \$ \[\e[0m\]'
