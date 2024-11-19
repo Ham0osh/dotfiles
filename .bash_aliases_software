@@ -1,3 +1,4 @@
 #!/bin/bash
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-alias pipes='~/workplace-hamish/dotfiles/software/pipes/pipes.sh'
+alias pipes='$SCRIPT_DIR/software/pipes/pipes.sh'
