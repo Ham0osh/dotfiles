@@ -117,7 +117,30 @@ function set_virtualenv () {
 source $SCRIPT_DIR/software/gitstatus/gitstatus.prompt.sh
 set_virtualenv
 
-PS1='\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}\n\[\e[38;5;26m\]${PYTHON_VIRTUALENV}\[\e[38;5;32m\]\w \$ \[\e[0m\]'
+# For getting screen session use ${STY#[0-9]*.}
+SCREENNAME_PROMPT='${STY#[0-9]*.}'
+
+# Place on RHS
+printf -v PS1RHS '\[\e[38;5;246m\]${STY#[0-9]*.}\[\e[0m\]'  # -1 is current time
+# Strip ANSI commands before counting length
+# From: https://www.commandlinefu.com/commands/view/12043/remove-color-special-escape-ansi-codes-from-text-with-sed
+PS1RHS_stripped=$(sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" <<<"${STY#[0-9]*.}")
+# Reference: https://en.wikipedia.org/wiki/ANSI_escape_code
+Save='\e[s' # Save cursor position
+Rest='\e[u' # Restore cursor to save point
+# Save cursor position, jump to right hand edge, then go left N columns where
+# N is the length of the printable RHS string. Print the RHS string, then
+# return to the saved position and print the LHS prompt.
+# Note: "\[" and "\]" are used so that bash can calculate the number of
+# printed characters so that the prompt doesn't do strange things when
+# editing the entered text.
+
+# Original prompt
+PS1A='\[\e[38;5;22;2m\]\@ \[\e[0;38;5;34;3m\]\u\[\e[38;5;35;1m\]@\[\e[22;38;5;36m\]\h \[\e[0;38;5;22;2m\]in \[\e[0;38;5;142m\]${GITSTATUS_PROMPT}'
+PS1B='\n\[\e[38;5;26m\]${PYTHON_VIRTUALENV}\[\e[38;5;32m\]\w \$ \[\e[0m\]'
+
+# Append screen name to the RHS if it exists
+PS1="${PS1A}\[${Save}\e[${COLUMNS:-$(tput cols)}C\e[${#PS1RHS_stripped}D${PS1RHS}${Rest}\]${PS1B}"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
